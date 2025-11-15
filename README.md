@@ -105,9 +105,8 @@ jobs:
         run: |
           ./scripts/deploy.sh staging ${{ github.sha }}
         env:
-          KUBECONFIG: ${{ secrets.STAGING_KUBECONFIG }}
+          KUBECONFIG: ${{ secrets.STAGING_KUBECONFIG }} ```
 ---
-
 
 Инструкция по настройке
 

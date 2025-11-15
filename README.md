@@ -108,6 +108,7 @@ jobs:
           KUBECONFIG: ${{ secrets.STAGING_KUBECONFIG }}
 ---
 
+
 Инструкция по настройке
 
 1. Добавление секретов в репозиторий

@@ -106,3 +106,52 @@ jobs:
           ./scripts/deploy.sh staging ${{ github.sha }}
         env:
           KUBECONFIG: ${{ secrets.STAGING_KUBECONFIG }}
+---
+
+Инструкция по настройке
+
+1. Добавление секретов в репозиторий
+
+Для работы pipeline необходимо добавить следующие секреты:
+
+В GitHub репозитории:
+
+1. Перейдите в Settings → Secrets and variables → Actions
+2. Нажмите New repository secret
+3. Добавьте необходимые секреты:
+- DOCKERHUB_USERNAME - логин Docker Hub
+- DOCKERHUB_TOKEN - токен доступа
+- STAGING_KUBECONFIG - конфиг Kubernetes для staging
+- PRODUCTION_KUBECONFIG - конфиг Kubernetes для production
+- SLACK_WEBHOOK_URL - для уведомлений
+2. Активация pipeline
+
+Шаги для активации:
+
+1. Создайте файл .github/workflows/ci-cd-pipeline.yml с приведенной выше конфигурацией
+2. Запушите изменения в ветку main
+3. Pipeline активируется автоматически при следующем push
+
+3. Ручной запуск pipeline
+Bash
+
+# Создание тега для запуска production деплоя
+git tag -a v1.0.0 -m "Release version 1.0.0"
+git push origin v1.0.0
+---
+
+Мониторинг и отладка
+
+Полезные ссылки:
+
+· GitHub Actions Documentation
+· Docker Security Scanning
+· Kubernetes Deployment Guide
+
+Частые проблемы:
+
+· Ошибка прав доступа - проверьте настройки секретов
+· Сбой сборки - проверьте логи выполнения шага Build
+· Ошибка деплоя - убедитесь в корректности конфигов Kubernetes
+
+---
